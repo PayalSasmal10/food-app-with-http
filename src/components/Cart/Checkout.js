@@ -12,6 +12,8 @@ const Checkout = (props) => {
     postal: true,
     city: true
   });
+
+
   
   const nameInputRef = useRef();
   const streetInputRef = useRef();
