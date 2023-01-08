@@ -1,6 +1,9 @@
 import { useRef, useState } from "react";
 import classes from "./Checkout.module.css";
 
+const isEmpty = (value) => value.trim() === "";
+const isFiveChar = (value) => value.trim().length === 5;
+
 const Checkout = (props) => {
   
   const [formInputValidity, setFormInputValidity] = useState({
@@ -15,8 +18,6 @@ const Checkout = (props) => {
   const postalInputRef = useRef();
   const cityInputRef = useRef();
 
-  const isEmpty = (value) => value.trim() === "";
-  const isFiveChar = (value) => value.trim().length === 5;
 
   const confirmHandler = (event) => {
     event.preventDefault();
@@ -45,13 +46,13 @@ const Checkout = (props) => {
       isEnteredPostValid;
 
     if(!formValid) {
-
+      return;
     }
     // submit form 
   };
 
   return (
-    <form onSubmit={confirmHandler}>
+    <form className={classes.form} onSubmit={confirmHandler}>
       
       <div className={`${classes.control} && ${formInputValidity.name ? '' : classes.invalid}`}>
         <label htmlFor="name">Your Name</label>
