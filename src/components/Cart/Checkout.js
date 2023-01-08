@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import classes from "./Checkout.module.css";
 
 const isEmpty = (value) => value.trim() === "";
-const isFiveChar = (value) => value.trim().length === 5;
+const isFiveChar = (value) => value.trim().length === 6;
 
 const Checkout = (props) => {
   
@@ -49,6 +49,12 @@ const Checkout = (props) => {
       return;
     }
     // submit form 
+    props.onConfirm({
+      name: enteredName,
+      street: enteredStreet,
+      city: enteredCity,
+      postal: enteredPostal
+    });
   };
 
   return (
@@ -69,7 +75,7 @@ const Checkout = (props) => {
       <div className={`${classes.control} && ${formInputValidity.postal ? '' : classes.invalid}`}>
         <label htmlFor="postal">Postal Code</label>
         <input type="number" id="postal" ref={postalInputRef} />
-        {!formInputValidity.name && <p>Please enter valid Postal code (5 characters long)!</p>}
+        {!formInputValidity.name && <p>Please enter valid Postal code (6 characters long)!</p>}
       </div>
 
       <div className={`${classes.control} && ${formInputValidity.city ? '' : classes.invalid}`}>
