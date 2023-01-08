@@ -88,13 +88,23 @@ const Cart = (props) => {
 
   const isSubmittingModalContent = <p>Sending order data....</p>;
 
-  const didSubmitModalContent = <p>Sucessfully sent the order...</p>;
+  const didSubmitModalContent = (
+    <React.Fragment>
+      <p>Sucessfully sent the order...</p>
+      <div className={classes.actions}>
 
-  return <Modal onClose={props.onClose}>
-    {!isSubmitting && !didSubmit && cartModalContent}
-    {isSubmitting && isSubmittingModalContent}
-    {!isSubmitting && didSubmit && didSubmitModalContent}
-  </Modal>;
+      <button className={classes.button} onClick={props.onClose}>Close</button>
+      </div>
+    </React.Fragment>
+  );
+
+  return (
+    <Modal onClose={props.onClose}>
+      {!isSubmitting && !didSubmit && cartModalContent}
+      {isSubmitting && isSubmittingModalContent}
+      {!isSubmitting && didSubmit && didSubmitModalContent}
+    </Modal>
+  );
 };
 
 export default Cart;
